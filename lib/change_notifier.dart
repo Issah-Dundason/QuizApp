@@ -12,6 +12,9 @@ class TFQuestionViewModel extends ChangeNotifier {
   }
 
   int get score => _score;
+
+  double get progressScore => _score / questions.length;
+
   TFQuestion get question => _currentQuestion;
 
 
@@ -31,5 +34,7 @@ class TFQuestionViewModel extends ChangeNotifier {
     if(_currentIndex < questions.length)
       _currentQuestion = questions[_currentIndex];
   }
+
+  bool onLastQuestion() => _currentIndex == questions.length;
 
 }
