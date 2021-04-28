@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/score_page.dart';
+import 'package:quiz_app/score_page_args.dart';
 import 'answer_button.dart';
 import 'change_notifier.dart';
 
@@ -20,9 +21,6 @@ class QuizApp extends StatelessWidget {
         padding: EdgeInsets.only(left: 25));
   }
 
-  void _onButtonPressed() {
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +42,13 @@ class QuizApp extends StatelessWidget {
                                 print('Button pressed!');
                                 model.markAnswer(true);
                                 if(model.onLastQuestion()) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScorePage(model.progressScore, model.score), maintainState: false));
+                                  Navigator.pushNamed(context, ScorePage.routeName, arguments: ScorePageArgs(model.score, model.progressScore));
                                 }
                               }, 'True'),
                               AnswerButton(() {
                                 model.markAnswer(false);
                                 if(model.onLastQuestion()) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScorePage(model.progressScore, model.score), maintainState: false));
+                                  Navigator.pushNamed(context, ScorePage.routeName, arguments: ScorePageArgs(model.score, model.progressScore));
                                 }
                               }, 'False',)
                             ]))))
